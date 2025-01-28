@@ -29,6 +29,7 @@ const ASSETS_TO_CACHE = [
   '/img/pirata.jpg',
   '/img/pirata.png',
   '/img/pirata2.png',
+  '/video/chikak47.mp4',
   '/img/sol.png'
 ];
 

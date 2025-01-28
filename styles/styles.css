@@ -77,18 +77,31 @@ body {
  
 }
 .pantallaFinal{
-    background-image: url(../img/chicak.png);
+    /* background-image: url(../img/chicak.png); */
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    background-size: cover;
- 
+    /* background-size: cover;
+     */
+ background-color: #b3a881;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     display: none;
 }
+video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    z-index: -1;
+    border: double 10px black;
+    box-shadow:  10px 12px 10px black;
+   border-radius:600px 600px 10px 10px;
+   transform: translate(-50%, -50%);
+  }
 .form-final{
     display: flex;
     flex-direction: column;

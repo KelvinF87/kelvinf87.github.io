@@ -16,49 +16,52 @@
     </header>
     
     <div class="pantallaFinal" id="pantallaFinal">
-        <div class="form-final">
-            <h3 id ="mensajeFin">Juego Terminado</h3>
-            <h4 id="mensajePuntos">Puntuación</h4>
-            <span id="puntos"></span>
-            <button id="btnFinal"> ¡¡Volvemos!!</button>
-        </div>
-    </div>   
-    <div class="pantallaInicial" id="pantallaInicial">
-        <div class="form-inicio">
-            <label for="nombreGamer">Escribe tu nombre</label><input type="text" id="nombreGamer" placeholder="Escribe tu nombre">
-            <button id="btnInicia"> ¡¡Vamos a jugar!!</button>
-            <a href="ayuda.html" target="_blank" rel="noopener noreferrer">Ayuda</a>
-            <button id="comprarBalas">Comprar Balas</button> 
-            
-        </div>
+        <video src="video/chikak47.mp4" autoplay="true" 
+        muted="true" loop="true" poster="img/chicak.png">
+    </video>
+    <div class="form-final">
+        <h3 id ="mensajeFin">Juego Terminado</h3>
+        <h4 id="mensajePuntos">Puntuación</h4>
+        <span id="puntos"></span>
+        <button id="btnFinal"> ¡¡Volvemos!!</button>
     </div>
-    <aside class="tool">
-        <span><button id="sinAudio">🔈</button></span>
-        <span><button id="conAudio">🔊</button></span>
-        <h3 id="muestraVidas"></h3>
-        <h3>Balas</h3>
-        <span id="balas">💣<h3 id="cantBalas"></h3></span>
-    </aside>
-    
-    <main>
-        <div class="canva">
-            <h2 id="h2Conteo">00</h2>
-            <span class="container-preguntas" id="preguntas"><h2 id="hPregunta">Cuantos son 2 + 2</h2></span>
-            <span id="disparoContainer" class="disparo">
-                <img src="img/disparo1.png" id="spanDisparo" alt="">
-            </span>
-            <div class="caja-respuestas"></div>
-            <img id="mirilla" src="/img/mira.png" alt="Imagen que sigue al mouse">
-            <span class="personaje">
-                <img id="imgPersonage" src="img/k45n.png" alt="">
-            </span>
-            <span id="pirataDisparado"><img src="img/pirata2.png" alt="" srcset=""></span>
-        </div>
-    </main>
-    <footer></footer>
-    <script src="js/vidas.js"></script>
-    <script src="js/preguntas.js"></script>
-    <script src="js/juego.js"></script>
-    <script src="js/app.js"></script>
+</div>   
+<div class="pantallaInicial" id="pantallaInicial">
+    <div class="form-inicio">
+        <label for="nombreGamer">Escribe tu nombre</label><input type="text" id="nombreGamer" placeholder="Escribe tu nombre">
+        <button id="btnInicia"> ¡¡Vamos a jugar!!</button>
+        <a href="ayuda.html" target="_blank" rel="noopener noreferrer">Ayuda</a>
+        <button id="comprarBalas">Comprar Balas</button> 
+        
+    </div>
+</div>
+<aside class="tool">
+    <span><button id="sinAudio">🔈</button></span>
+    <span><button id="conAudio">🔊</button></span>
+    <h3 id="muestraVidas"></h3>
+    <h3>Balas</h3>
+    <span id="balas">💣<h3 id="cantBalas"></h3></span>
+</aside>
+
+<main>
+    <div class="canva">
+        <h2 id="h2Conteo">00</h2>
+        <span class="container-preguntas" id="preguntas"><h2 id="hPregunta">Cuantos son 2 + 2</h2></span>
+        <span id="disparoContainer" class="disparo">
+            <img src="img/disparo1.png" id="spanDisparo" alt="">
+        </span>
+        <div class="caja-respuestas"></div>
+        <img id="mirilla" src="/img/mira.png" alt="Imagen que sigue al mouse">
+        <span class="personaje">
+            <img id="imgPersonage" src="img/k45n.png" alt="">
+        </span>
+        <span id="pirataDisparado"><img src="img/pirata2.png" alt="" srcset=""></span>
+    </div>
+</main>
+<footer></footer>
+<script src="js/vidas.js"></script>
+<script src="js/preguntas.js"></script>
+<script src="js/juego.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const balas = document.getElementById("balas");
     const cantBalas = document.getElementById("cantBalas");
     const comprarBalas = document.getElementById("comprarBalas"); // Nuevo botón
+    const pirataDisparado = document.getElementById("pirataDisparado");
 
 
     let conteo = 10;
@@ -219,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
             proximaPregunta(respuesta);
         }
     });
-
+let validador=0
     function proximaPregunta(respuesta) {
         if (respuesta) {
             juego.checkAnswer(respuesta);
@@ -231,6 +232,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>Gracias por jugar</h3>
             <h2>${nombreGamer.value}</h2>
             `;
+            if(validador!=juego.correctAnswers){
+                validador=juego.correctAnswers;
+                pirataDisparado.style.visibility="visible"
+                setTimeout(() => {
+                    pirataDisparado.style.visibility="hidden"
+                }, 2000);
+            }
+            console.log("validador "+validador+" index "+juego.correctAnswers)
             // if((juego.correctAnswers * 10) >= 50){
             //     comprarBalas() 
             //     comprarBalas()

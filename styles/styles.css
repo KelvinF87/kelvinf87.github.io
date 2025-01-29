@@ -41,6 +41,7 @@ body {
         transform: scale(1.1);
     }
 }
+
 .form-inicio{
     font-weight: bold;
     text-transform: uppercase;
@@ -151,8 +152,22 @@ video {
     position: absolute;
     width: 100px;
     height: 100vh;
+    text-align: center;
+    
 }
-
+.tool>h3 {
+    color: rgb(43, 34, 34);
+    text-shadow: 0 0 15px rgba(242, 9, 9, 0.744);
+    text-align: center;
+}
+#balas{
+    display: flex;
+  /* background-color: #7a7e77a4; */
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: space-around;
+  text-shadow: 0 0 15px rgba(242, 9, 9, 0.744);
+}
 main {
     width: 100%;
     overflow-y: hidden;

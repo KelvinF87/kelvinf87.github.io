@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // const preguntas = document.getElementById("preguntas");
     // const respuestas = document.getElementById("respuestas");
     const audioDispara = new Audio("sound/disparo.mp3");
+    const audioEvalua = new Audio("sound/correct.mp3");
 
     // const muestraVidas = document.getElementById("muestraVidas");
     const cajaRespuestas = document.querySelector(".caja-respuestas");
@@ -24,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const cantBalas = document.getElementById("cantBalas");
     const comprarBalas = document.getElementById("comprarBalas"); // Nuevo botón
     const pirataDisparado = document.getElementById("pirataDisparado");
-
-
+    let acumuladorTiempo = 0
+    let esperaJuego=1000;
     let conteo = 10;
 
     // preguntas
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mutearSonido();
     }
 
+
     let controlDisparo = 0;
     function contadorBalas(accion) {
         if (accion == null && controlDisparo == 0) {
@@ -89,17 +91,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnInicia.onclick = () => {
         if (nombreGamer.value.length >= 3) {
-            localStorage.setItem("miNombre", nombreGamer.value);
-            pantallaInicial.style.display = "none";
-            comprarBalas.style.visibility = "hidden";
-            iniciaJuego();
-            movimentos();
-            contadorBalas(0);
-            audioFondo.pause();
-            audioFondo.src = "sound/suspenso.mp3";
-            audioFondo.loop = true;
-            audioFondo.play();
-            tiempo();
+            if(vidas.vidas !== 0){
+                console.log("hola");
+                localStorage.setItem("miNombre", nombreGamer.value);
+                pantallaInicial.style.display = "none";
+                comprarBalas.style.visibility = "hidden";
+                iniciaJuego();
+                movimentos();
+                contadorBalas(0);
+                audioFondo.pause();
+                audioFondo.src = "sound/suspenso.mp3";
+                audioFondo.loop = true;
+                audioFondo.play();
+                tiempo();
+            }else{
+               alert("Debes comprar balas💣")
+            }
         }
     };
 
@@ -140,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
             canva.addEventListener("click", (event) => {
                 event.preventDefault();
 
-                if (!vidas.hasVidas()) {
+                if (!vidas.hasVidas()) {                  
                     mostrarPantallaFinal();
                     return;
                 }
@@ -170,10 +177,22 @@ document.addEventListener("DOMContentLoaded", () => {
         audioDispara.currentTime = 0;
         audioDispara.play();
     }
+    function reproducirEvalua(evalua) {
+        if(evalua == 1){
+             audioEvalua.src="/sound/correct.mp3" 
+        }
+        else{
+            audioEvalua.src="/sound/incorrect.mp3" 
+        }
+      
+        audioEvalua.currentTime = 0;
+        audioEvalua.play();
+    }
 
     function mutearSonido() {
         audioDispara.volume = localStorage.getItem("sonido");
         audioFondo.volume = localStorage.getItem("sonido");
+        audioEvalua.volume = localStorage.getItem("sonido");
 
         if (localStorage.getItem("sonido") == "1") {
             conSonido.style.background = "red";
@@ -199,8 +218,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (conteo <= 0) {
                 clearInterval(idtiempo); // Detiene el intervalo
                 proximaPregunta("end time");
+                
             }
-        }, 1000);
+        }, esperaJuego);
     }
 
     const tool = document.querySelector('.tool');
@@ -220,30 +240,37 @@ document.addEventListener("DOMContentLoaded", () => {
             proximaPregunta(respuesta);
         }
     });
-let validador=0
+    let validador = 0
     function proximaPregunta(respuesta) {
         if (respuesta) {
             juego.checkAnswer(respuesta);
             juego.moveToNextQuestion();
-            console.log(juego.correctAnswers + " " + juego.currentQuestionIndex);
-            puntos.innerHTML = `<h2>${juego.correctAnswers * 10}</h2>
+            console.log(juego.correctAnswers + " " + juego.currentQuestionIndex+" respuesta "+respuesta);
+            // if(respuesta=="end time")clearInterval(idtiempo);
+            puntos.innerHTML = `<h2>${(juego.correctAnswers * 10)*acumuladorTiempo}</h2>
             <h3>Cantidad de Fallos</h3>
-            <h2>${juego.currentQuestionIndex - juego.correctAnswers}</h2>
+            <h2>${juego.currentQuestionIndex - juego.correctAnswers}, te sobró ${acumuladorTiempo} de tiempo</h2>
             <h3>Gracias por jugar</h3>
             <h2>${nombreGamer.value}</h2>
             `;
-            if(validador!=juego.correctAnswers){
-                validador=juego.correctAnswers;
-                pirataDisparado.style.visibility="visible"
+            if (validador != juego.correctAnswers) {
+                validador = juego.correctAnswers;
+                pirataDisparado.style.visibility = "visible"
+                acumuladorTiempo += parseInt(h2Conteo.textContent)
+                reproducirEvalua(1)
+                // console.log("Tiempo Acumulado " + acumuladorTiempo)
                 setTimeout(() => {
-                    pirataDisparado.style.visibility="hidden"
+                    pirataDisparado.style.visibility = "hidden"
                 }, 2000);
+            }else{
+                reproducirEvalua(0)
             }
-            console.log("validador "+validador+" index "+juego.correctAnswers)
+            // console.log("validador " + validador + " index " + juego.correctAnswers + " teimpo restante= " + h2Conteo.textContent)
             // if((juego.correctAnswers * 10) >= 50){
             //     comprarBalas() 
             //     comprarBalas()
             // }
+
             conteo = 10;
             tiempo();
             iniciaJuego();
@@ -263,6 +290,7 @@ let validador=0
     }
 
     function mostrarPantallaFinal() {
+        hayVidas(1)
         audioFondo.pause();
         audioFondo.src = "sound/final.mp3";
         audioFondo.pause();
@@ -285,20 +313,25 @@ let validador=0
         vidas.saveToLocalStorage();
     }
 
-    if (vidas.vidas > 0) {
+hayVidas(esperaJuego)
+function hayVidas(espera) {
+       if (vidas.vidas > 0) {
         comprarBalas.style.visibility = "hidden";
     } else {
         comprarBalas.style.visibility = "visible";
+        esperaJuego=espera;
     }
+}
+ 
 });
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/js/sw.js')
-        .then((registration) => {
-          console.log('Service Worker registrado con éxito:', registration.scope);
-        })
-        .catch((error) => {
-          console.log('Error al registrar el Service Worker:', error);
-        });
+        navigator.serviceWorker.register('/js/sw.js')
+            .then((registration) => {
+                console.log('Service Worker registrado con éxito:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('Error al registrar el Service Worker:', error);
+            });
     });
-  }
+}

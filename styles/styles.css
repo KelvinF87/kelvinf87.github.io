@@ -293,8 +293,8 @@ article>img {
 }
 
 .canva>.personaje>img {
-    width: 30%;
-    min-width: 500px;
+    width: 25%;
+    min-width: 300px;
     position: fixed;
     bottom: 0;
     left: 35%;

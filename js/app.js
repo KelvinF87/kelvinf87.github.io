@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const mouseY = event.clientY;
 
             let rotationZ = ((mouseX - centerX) / centerX) * 40;
-            imagenpersonage.style.transform = `translate(${rotationZ * 6.5}px, ${mouseY / 2.6}px) rotate(${rotationZ}deg) scale(1.2)`;
+            imagenpersonage.style.transform = `translate(${rotationZ * 6.5}px, ${mouseY / 2.6}px) rotate(${rotationZ}deg) scale(1.0)`;
 
             let counttimerDisparo = 0;
 

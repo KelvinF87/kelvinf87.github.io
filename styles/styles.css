@@ -376,7 +376,7 @@ article>img {
         justify-content: center; /* Centra los elementos hijos verticalmente */
         position: fixed; /* O absolute dependiendo de tus necesidades */
         top: 50%; /* Mueve el elemento al 50% de la altura de la ventana */
-        left: 45%; /* Mueve el elemento al 50% del ancho de la ventana */
+        left: 50%; /* Mueve el elemento al 50% del ancho de la ventana */
         transform: translate(-50%, -50%); /* Ajusta el elemento para que esté centrado */
         width: 100%;
         height: auto;

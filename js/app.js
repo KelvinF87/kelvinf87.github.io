@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const comprarBalas = document.getElementById("comprarBalas"); // Nuevo botón
     const pirataDisparado = document.getElementById("pirataDisparado");
     let acumuladorTiempo = 0
-    let esperaJuego=1000;
+    let esperaJuego = 1000;
     let conteo = 10;
 
     // preguntas
@@ -52,6 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
         new Preguntas("¿Qué famoso museo se encuentra en Las Palmas de Gran Canaria?", ["Museo Néstor", "Museo del Prado", "Museo Reina Sofía", "Museo Picasso"], "Museo Néstor", 19),
         new Preguntas("¿Qué producto típico de Gran Canaria es conocido internacionalmente?", ["Queso de Flor", "Miel de Palma", "Ron Arehucas", "Vino Malvasía"], "Ron Arehucas", 20),
     ];
+
+    canva.style.display = "none";
+    pantallaInicial.style.display = "flex";
+    pantallaFinal.style.display = "none";
 
     let vidas = new Vidas(listaPreguntas.length);
     mutearSonido();
@@ -91,11 +95,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnInicia.onclick = () => {
         if (nombreGamer.value.length >= 3) {
-            if(vidas.vidas !== 0){
+            if (vidas.vidas !== 0) {
                 console.log("hola");
                 localStorage.setItem("miNombre", nombreGamer.value);
                 pantallaInicial.style.display = "none";
                 comprarBalas.style.visibility = "hidden";
+                canva.style.display = "block";
+                pantallaInicial.style.display = "none";
+                pantallaFinal.style.display = "none";
                 iniciaJuego();
                 movimentos();
                 contadorBalas(0);
@@ -104,8 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 audioFondo.loop = true;
                 audioFondo.play();
                 tiempo();
-            }else{
-               alert("Debes comprar balas💣")
+            } else {
+                alert("Debes comprar balas💣")
             }
         }
     };
@@ -147,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             canva.addEventListener("click", (event) => {
                 event.preventDefault();
 
-                if (!vidas.hasVidas()) {                  
+                if (!vidas.hasVidas()) {
                     mostrarPantallaFinal();
                     return;
                 }
@@ -178,13 +185,13 @@ document.addEventListener("DOMContentLoaded", () => {
         audioDispara.play();
     }
     function reproducirEvalua(evalua) {
-        if(evalua == 1){
-             audioEvalua.src="/sound/correct.mp3" 
+        if (evalua == 1) {
+            audioEvalua.src = "/sound/correct.mp3"
         }
-        else{
-            audioEvalua.src="/sound/incorrect.mp3" 
+        else {
+            audioEvalua.src = "/sound/incorrect.mp3"
         }
-      
+
         audioEvalua.currentTime = 0;
         audioEvalua.play();
     }
@@ -218,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (conteo <= 0) {
                 clearInterval(idtiempo); // Detiene el intervalo
                 proximaPregunta("end time");
-                
+
             }
         }, esperaJuego);
     }
@@ -245,14 +252,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (respuesta) {
             juego.checkAnswer(respuesta);
             juego.moveToNextQuestion();
-            console.log(juego.correctAnswers + " " + juego.currentQuestionIndex+" respuesta "+respuesta);
+            console.log(juego.correctAnswers + " " + juego.currentQuestionIndex + " respuesta " + respuesta);
             // if(respuesta=="end time")clearInterval(idtiempo);
-            puntos.innerHTML = `<h2>${(juego.correctAnswers * 10)*acumuladorTiempo}</h2>
+            puntos.innerHTML = `<h2>${(juego.correctAnswers * 10) * acumuladorTiempo}</h2>
             <h3>Cantidad de Fallos</h3>
-            <h2>${juego.currentQuestionIndex - juego.correctAnswers}, te sobró ${acumuladorTiempo} de tiempo</h2>
+            <h2>${juego.currentQuestionIndex - juego.correctAnswers}</h2> <h2> Te sobró ${acumuladorTiempo} de tiempo</h2>
             <h3>Gracias por jugar</h3>
             <h2>${nombreGamer.value}</h2>
             `;
+
             if (validador != juego.correctAnswers) {
                 validador = juego.correctAnswers;
                 pirataDisparado.style.visibility = "visible"
@@ -262,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     pirataDisparado.style.visibility = "hidden"
                 }, 2000);
-            }else{
+            } else {
                 reproducirEvalua(0)
             }
             // console.log("validador " + validador + " index " + juego.correctAnswers + " teimpo restante= " + h2Conteo.textContent)
@@ -313,16 +321,16 @@ document.addEventListener("DOMContentLoaded", () => {
         vidas.saveToLocalStorage();
     }
 
-hayVidas(esperaJuego)
-function hayVidas(espera) {
-       if (vidas.vidas > 0) {
-        comprarBalas.style.visibility = "hidden";
-    } else {
-        comprarBalas.style.visibility = "visible";
-        esperaJuego=espera;
+    hayVidas(esperaJuego)
+    function hayVidas(espera) {
+        if (vidas.vidas > 0) {
+            comprarBalas.style.visibility = "hidden";
+        } else {
+            comprarBalas.style.visibility = "visible";
+            esperaJuego = espera;
+        }
     }
-}
- 
+
 });
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

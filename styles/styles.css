@@ -327,6 +327,67 @@ article>img {
     border: solid white;
     border-radius: 50%;
 }
+@media (max-width: 768px) {
+    #pirataDisparado>img{
+        width: 400px;
+        animation: animaPirata 2s linear infinite;
+    }
+    .caja-respuestas {
+        position: fixed; /* Mantiene el elemento en una posición fija */
+        top: 50%; /* Mueve el elemento al 50% de la altura de la ventana */
+        left: 50%; /* Mueve el elemento al 50% del ancho de la ventana */
+        transform: translate(-50%, -50%); /* Ajusta el elemento para que esté centrado */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra los elementos hijos horizontalmente */
+        text-shadow: 0 1px 10px rgb(47, 0, 255);
+        gap: 20px; /* Espacio entre los elementos hijos */
+        margin: 0; /* Elimina márgenes */
+    }
+    
+    article {
+      text-align: center;
+      padding: 10px;
+        border-radius: 20px 0;
+        /* background-color: rgba(0, 0, 0, 0.049); */
+        width: 7rem;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        font-size: 0.8em;
+        transition: transform 0.5s;
+        animation: animapregunta 11s linear infinite;
+    }
+    .canva>.personaje>img {
+        width: 50%;
+        min-width: 400px;
+        max-width: 400px;
+        position: fixed;
+        flex-wrap: wrap;
+        bottom: 0;
+        left: 35%;
+        transform: translateX(-50%);
+        transition: transform 0.1s;
+        transform: translate(50px, 400px) rotate(100deg) scale(1.2);
+    }
+    .form-final {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra los elementos hijos horizontalmente */
+        justify-content: center; /* Centra los elementos hijos verticalmente */
+        position: fixed; /* O absolute dependiendo de tus necesidades */
+        top: 50%; /* Mueve el elemento al 50% de la altura de la ventana */
+        left: 45%; /* Mueve el elemento al 50% del ancho de la ventana */
+        transform: translate(-50%, -50%); /* Ajusta el elemento para que esté centrado */
+        width: 100%;
+        height: auto;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.649);
+        border-radius: 10px;
+        box-shadow: 5px 12px 10px black;
+        text-shadow: 1px 2px rgb(186, 245, 181);
+        /* gap: 5px; */ /* Puedes descomentar esto si deseas espacio entre los elementos hijos */
+    }
+}
 @font-face {
     font-family: jungle;
     src: url(./font/CreatoDisplay-ExtraBoldItalic.otf);

@@ -16,6 +16,9 @@ body {
     background-color: #252823;
     font-size: 1rem;
 }
+#conAudio:hover, #sinAudio:hover{
+    box-shadow: inset 1px 2px 20px rgb(32, 37, 171);
+}
 .pantallaInicial{
     width: 100%;
     height: 100vh;
@@ -98,9 +101,9 @@ video {
     height: 100%;
     width: auto;
     z-index: -1;
-    border: double 10px black;
+    border: double 20px rgb(255, 255, 255);
     box-shadow:  10px 12px 10px black;
-   border-radius:600px 600px 10px 10px;
+   border-radius:50% 50% 10px 10px;
    transform: translate(-50%, -50%);
   }
 .form-final{
@@ -108,7 +111,7 @@ video {
     flex-direction: column;
     gap: 5px;
     width: 30rem;
-    height: 30vh;
+    height: auto;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.708);
     padding: 20px;
@@ -294,7 +297,8 @@ article>img {
 
 .canva>.personaje>img {
     width: 25%;
-    min-width: 300px;
+    min-width: 250px;
+    max-width: 400px;
     position: fixed;
     bottom: 0;
     left: 35%;

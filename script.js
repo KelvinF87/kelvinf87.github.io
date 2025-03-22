@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let lastCodeBlock = null
   
     // API Endpoint - Replace with your actual endpoint
-    const API_ENDPOINT = "htps://serviaik.netlify.app/chat"
+    const API_ENDPOINT = "https://serviaik.netlify.app/chat"
   
     // Theme Toggle
     function initTheme() {

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let lastCodeBlock = null
   
     // API Endpoint - Replace with your actual endpoint
-    const API_ENDPOINT = "https://serviairemote.onrender.com/chat"
+    const API_ENDPOINT = "https://serviairemote.onrender.com/api/chat"
     // const API_ENDPOINT = "http://localhost:3000/api/chat"
   
     // Theme Toggle

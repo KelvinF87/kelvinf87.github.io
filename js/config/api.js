@@ -1,2 +1,2 @@
-export const API_ENDPOINT = "http://localhost:5005/api"; // Replace with your actual API endpoint
-// export const API_ENDPOINT = "https://serviairemote.onrender.com/api"; // Replace with your actual API endpoint
+// export const API_ENDPOINT = "http://localhost:5005/api"; // Replace with your actual API endpoint
+export const API_ENDPOINT = "https://serviairemote.onrender.com/api"; // Replace with your actual API endpoint

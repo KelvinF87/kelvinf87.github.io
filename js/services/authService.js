@@ -1,9 +1,21 @@
 import { API_ENDPOINT, setNextBackupAPI } from "../config/api.js";
 
 // Función para realizar las llamadas a la API
-const apiCall = async (url, options) => {
+const apiCall = async (url, options, timeout = 5000) => {
     try {
-        const response = await fetch(url, options);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => {
+            controller.abort(); // Aborta la solicitud después de [timeout] ms
+            console.warn(`Request timed out after ${timeout}ms at ${url}`);
+        }, timeout);
+
+        const response = await fetch(url, {
+            ...options,
+            signal: controller.signal, // Asocia la señal al fetch
+        });
+
+        clearTimeout(timeoutId); // Limpia el timeout si la solicitud se completa a tiempo
+
         if (!response.ok) {
             console.warn(`API request failed with status ${response.status} at ${url}`);
             throw new Error(`API request failed with status ${response.status}`);

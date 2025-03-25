@@ -1,7 +1,7 @@
 import { API_ENDPOINT, setNextBackupAPI } from "../config/api.js";
 
 // Función para realizar las llamadas a la API
-const apiCall = async (url, options, timeout = 5000) => {
+const apiCall = async (url, options, timeout = 10000) => {
     try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => {

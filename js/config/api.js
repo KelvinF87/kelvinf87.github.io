@@ -2,7 +2,7 @@ const API_ENDPOINT_PRIMARY =  "http://localhost:5005/api";
 const API_ENDPOINT_SECONDARY = "https://serviairemote.onrender.com/api";
 const API_ENDPOINT_TERTIARY = "http://docentek.ddns.net:5005/api";
 
-let API_ENDPOINT = API_ENDPOINT_PRIMARY; // Inicialmente usa la URL primaria
+let API_ENDPOINT = API_ENDPOINT_SECONDARY; // Inicialmente usa la URL primaria
 let currentEndpointIndex = 0; // Índice del endpoint actual en uso
 
 const API_ENDPOINTS = [

@@ -1,4 +1,4 @@
-const API_ENDPOINT_PRIMARY = "http://localhost:5005/api";
+const API_ENDPOINT_PRIMARY =  "http://localhost:5005/api";
 const API_ENDPOINT_SECONDARY = "https://serviairemote.onrender.com/api";
 const API_ENDPOINT_TERTIARY = "http://docentek.ddnst.net:5005/api";
 

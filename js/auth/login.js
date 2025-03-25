@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Login failed:", error);
       // Display the error message to the user
       alert("Login failed. Check your credentials.");
+      // Puedes agregar lógica aquí para rastrear el número de intentos de inicio de sesión
+      // y mostrar un mensaje diferente si el usuario ha intentado iniciar sesión demasiadas veces.
     }
   });
 });

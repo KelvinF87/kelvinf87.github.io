@@ -6,8 +6,8 @@ let API_ENDPOINT = API_ENDPOINT_SECONDARY; // Inicialmente usa la URL primaria
 let currentEndpointIndex = 0; // Índice del endpoint actual en uso
 
 const API_ENDPOINTS = [
-    API_ENDPOINT_SECONDARY,
     API_ENDPOINT_TERTIARY,
+    API_ENDPOINT_SECONDARY,
     API_ENDPOINT_PRIMARY,
 ];
 

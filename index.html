@@ -11,7 +11,26 @@
     <script src="css/browser@4.js"></script>
     <script src="css/marked.min.js"></script>
     <script src="css/highlight.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <style>
+        #editor {
+            border: 1px solid #4a5568; /* Borde gris oscuro */
+            border-radius: 0.5rem; /* Radio del borde */
+            background-color: #2d3748; /* Fondo gris oscuro */
+            color: #cbd5e0; /* Color del texto */
+            padding: 0.75rem; /* 12px */
+            min-height: 2.5rem; /* Altura mínima */
+            width: 100%;       /* Ocupa todo el ancho disponible */
+            outline: none;     /* Elimina el borde al enfocar */
+            font-size: 1rem;   /* Tamaño de la fuente */
+            line-height: 1.5;   /* Interlineado */
+            box-sizing: border-box; /* Incluye el padding y el border en el ancho */
+        }
+
+        #editor::placeholder {
+            color: #718096;  /* Color del placeholder */
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
@@ -81,8 +100,8 @@
                 <!-- *** Input Area *** -->
                 <div class="border-t border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-800">
                     <form id="message-form" class="flex items-center space-x-2">
-                        <input id="message-input" type="text" placeholder="Type your message..."
-                            class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white">
+                        <h4>Ctrl+Enter</h4>
+                        <div id="editor" contenteditable="true" placeholder="Type your message..."></div>
                         <button id="send-button" type="submit"
                             class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -127,8 +146,7 @@
             <!-- *** Input Area for Split View *** -->
             <div class="mt-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
                 <form id="split-message-form" class="flex items-center space-x-2">
-                    <input id="split-message-input" type="text" placeholder="Type your message..."
-                        class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white">
+                    <div id="editor" contenteditable="true" placeholder="Type your message..."></div>
                     <button type="submit"
                         class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -203,6 +221,17 @@
     <script src="js/app.js" type="module"></script>
     <!-- *** Theme Handling JavaScript *** -->
     <script src="js/theme.js" type="module"></script>
+    <script>
+        document.getElementById('message-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const textoFormateado = document.getElementById('editor').innerHTML;
+            //console.log(textoFormateado)
+            // Aquí iría tu lógica para enviar `textoFormateado` a ChatGPT
+            // y renderizar la respuesta.  Tendrías que adaptar el formato a lo que
+            // ChatGPT espera.  Por ejemplo, si ChatGPT espera texto plano con Markdown,
+            // tendrías que convertir el HTML a Markdown.
+        });
+    </script>
 </body>
 
 </html>

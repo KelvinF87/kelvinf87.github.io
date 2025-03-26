@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const profilePicImg = document.getElementById("profile-pic");
     const logoutLink = document.getElementById('logout-link');
     const settingsLink = document.querySelector('a[href="settings.html"]'); // Get the settings link
-    
+    const editor = document.getElementById("editor"); // Get the editor element
+
     const messagelog = "🇪🇸 Por favor, inicie sesión para enviar mensajes.\n" +
         "🇫🇷 Veuillez vous connecter pour envoyer des messages.\n" +
         "🇩🇪 Bitte melden Sie sich an, um Nachrichten zu senden.\n" +
@@ -39,10 +40,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     // State
     let isSplitView = false;
     let lastCodeBlock = null;
-    
+
     // Theme Initialization
     initTheme();
-    
+
     // Load user info from token
     await loadUserInfo();
 
@@ -60,11 +61,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         breaks: true,
         gfm: true,
     });
-
+    //AQUI envio mensaje
+    editor.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && event.ctrlKey) {
+            // alert("CTRL + Enter pressed!");
+            // Aquí puedes agregar tu lógica para enviar el mensaje o lo que necesites hacer
+            event.preventDefault(); // Previene el salto de línea por defecto en el contenteditable
+            handleMessageSubmit(event, editor.textContent)
+        }
+    });
     // Handle message submission (for both normal and split and verify session)
     async function handleMessageSubmit(e, input) {
         e.preventDefault();
-        const messageText = input.value.trim();
+        editor.textContent = ""; // Clear the editor content
+
+        const messageText = input.trim();
         if (messageText === "") return;
 
         const token = localStorage.getItem("authToken");
@@ -85,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             await userService.verifyToken(token); // Verify if session is active
             displayUserMessage(messageText, chatLog, contextPanel, isSplitView); // Display user message
-            input.value = "";
+            input = "";
             sendMessageToAPI(messageText); // Send message to API
         } catch (error) {
             console.error("Session verification failed. Redirecting to login.", error);
@@ -96,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Normal view message form
     messageForm.addEventListener("submit", (e) => {
-        handleMessageSubmit(e, messageInput);
+        handleMessageSubmit(e, editor.textContent);
     });
 
     // Split view message form
@@ -176,7 +187,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     switchToSplitView,
                     updateCodePanel
                 );
-             
+
             } else {
                 displayBotMessage(
                     "✓",
